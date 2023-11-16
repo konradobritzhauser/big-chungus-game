@@ -22,7 +22,8 @@ let buttonTypes = {
   ARROW_RIGHT: "ArrowRight",
   ACTION_1:"ACTION_1",
   ACTION_2:"ACTION_2",
-  ACTION_3:"ACTION_3"
+  ACTION_3:"ACTION_3",
+  SPECIAL_ACTION_1:"SPECIAL_ACTION_1"
 };
 
 const ENEMY_TYPE = {
@@ -889,6 +890,7 @@ window.addEventListener("load", function () {
       }else if(this.type==buttonTypes.ACTION_1)window.dispatchEvent(new KeyboardEvent("keydown", { key: '1' }));
        else if(this.type==buttonTypes.ACTION_2)window.dispatchEvent(new KeyboardEvent("keydown", { key: '2' }));
        else if(this.type==buttonTypes.ACTION_3)window.dispatchEvent(new KeyboardEvent("keydown", { key: '3' }));
+       else if(this.type==buttonTypes.SPECIAL_ACTION_1)window.dispatchEvent(new KeyboardEvent("keydown", { key: 'q' }));
       
     }
     mouseup() {
@@ -943,21 +945,23 @@ window.addEventListener("load", function () {
 
       this.margin=20
       if (buttonType == buttonTypes.ACTION_1) {
-        console.log("starting action 1 button");
         this.x = this.anchorX +this.width*2+this.margin*2
         this.y = this.anchorY
         this.image = document.getElementById("action1");
       } else if (buttonType == buttonTypes.ACTION_2) {
-        console.log("starting action 2 button");
         this.x = this.anchorX + this.width+this.margin
         this.y = this.anchorY;
         this.image = document.getElementById("action2");
       } else if (buttonType == buttonTypes.ACTION_3) {
-        console.log("starting down button");
 
         this.x = this.anchorX 
         this.y = this.anchorY 
         this.image = document.getElementById("action3");
+      } else if (buttonType == buttonTypes.SPECIAL_ACTION_1) {
+        console.log("starting special action button");
+        this.x = this.anchorX +this.width*2+this.margin*2
+        this.y = this.anchorY -this.height-this.margin
+        this.image = document.getElementById("specialAction1");
       } 
     }
   }
@@ -985,6 +989,12 @@ window.addEventListener("load", function () {
         this.controlsAnchorX,
         this.controlsAnchorY
       );
+       this.specialAction1 = new ActionButton(
+        game,
+        buttonTypes.SPECIAL_ACTION_1,
+        this.controlsAnchorX,
+        this.controlsAnchorY
+      );
       
     }
 
@@ -999,6 +1009,7 @@ window.addEventListener("load", function () {
       this.action1.draw(context);
       this.action2.draw(context);
       this.action3.draw(context);
+      this.specialAction1.draw(context)
     }
   }
 
