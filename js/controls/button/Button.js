@@ -1,3 +1,6 @@
+import { buttonTypes } from "../../constants/buttons.js";
+
+
 export default class Button {
     constructor(game, type) {
       this.game = game;
