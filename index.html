@@ -1,110 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="./styles.css"></link>
-    <link rel="manifest" href="manifest.json" />
-</head>
-<body style="background-color: green;">
-
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body style="background-color: green">
     <script>
-        function enterFullScreen(){
-            document.getElementById("canvas1").requestFullscreen()
+      function enterFullScreen() {
+        document.getElementById("canvas1").requestFullscreen();
+      }
+
+      //disable scroll
+      // left: 37, up: 38, right: 39, down: 40,
+      // spacebar: 32, pageup: 33, pagedown: 34, end: 35, home: 36
+      var keys = { 37: 1, 38: 1, 39: 1, 40: 1 };
+
+      function preventDefault(e) {
+        e.preventDefault();
+      }
+
+      function preventDefaultForScrollKeys(e) {
+        if (keys[e.keyCode]) {
+          preventDefault(e);
+          return false;
         }
+      }
 
-        //disable scroll
-        // left: 37, up: 38, right: 39, down: 40,
-// spacebar: 32, pageup: 33, pagedown: 34, end: 35, home: 36
-var keys = {37: 1, 38: 1, 39: 1, 40: 1};
+      // modern Chrome requires { passive: false } when adding event
+      var supportsPassive = false;
+      try {
+        window.addEventListener(
+          "test",
+          null,
+          Object.defineProperty({}, "passive", {
+            get: function () {
+              supportsPassive = true;
+            },
+          })
+        );
+      } catch (e) {}
 
-function preventDefault(e) {
-  e.preventDefault();
-}
+      var wheelOpt = supportsPassive ? { passive: false } : false;
+      var wheelEvent =
+        "onwheel" in document.createElement("div") ? "wheel" : "mousewheel";
 
-function preventDefaultForScrollKeys(e) {
-  if (keys[e.keyCode]) {
-    preventDefault(e);
-    return false;
-  }
-}
+      // call this to Disable
+      function disableScroll() {
+        window.addEventListener("DOMMouseScroll", preventDefault, false); // older FF
+        window.addEventListener(wheelEvent, preventDefault, wheelOpt); // modern desktop
+        window.addEventListener("touchmove", preventDefault, wheelOpt); // mobile
+        window.addEventListener("keydown", preventDefaultForScrollKeys, false);
+      }
 
-// modern Chrome requires { passive: false } when adding event
-var supportsPassive = false;
-try {
-  window.addEventListener("test", null, Object.defineProperty({}, 'passive', {
-    get: function () { supportsPassive = true; } 
-  }));
-} catch(e) {}
-
-var wheelOpt = supportsPassive ? { passive: false } : false;
-var wheelEvent = 'onwheel' in document.createElement('div') ? 'wheel' : 'mousewheel';
-
-// call this to Disable
-function disableScroll() {
-  window.addEventListener('DOMMouseScroll', preventDefault, false); // older FF
-  window.addEventListener(wheelEvent, preventDefault, wheelOpt); // modern desktop
-  window.addEventListener('touchmove', preventDefault, wheelOpt); // mobile
-  window.addEventListener('keydown', preventDefaultForScrollKeys, false);
-}
-
-// call this to Enable
-function enableScroll() {
-  window.removeEventListener('DOMMouseScroll', preventDefault, false);
-  window.removeEventListener(wheelEvent, preventDefault, wheelOpt); 
-  window.removeEventListener('touchmove', preventDefault, wheelOpt);
-  window.removeEventListener('keydown', preventDefaultForScrollKeys, false);
-}
-disableScroll()
-
-
-
-
-
+      // call this to Enable
+      function enableScroll() {
+        window.removeEventListener("DOMMouseScroll", preventDefault, false);
+        window.removeEventListener(wheelEvent, preventDefault, wheelOpt);
+        window.removeEventListener("touchmove", preventDefault, wheelOpt);
+        window.removeEventListener(
+          "keydown",
+          preventDefaultForScrollKeys,
+          false
+        );
+      }
+      disableScroll();
     </script>
     <canvas id="canvas1"></canvas>
 
-
     <!-- characters -->
-    <img id='player' src="./assets/Big_Chungus_29.png">
-    <img id='player-dark-mode' src="./assets/dark-chungus.png">
-    <img id='npc1' src="./assets/sprites/npc1.png">
-    <img id='npc2' src="./assets/sprites/npc2.png">
-    <img id='carrot' src="./assets/sprites/carrot.png">
-    <img id='thanos1' src="./assets/sprites/thanos1.png">
-    <img id='thanos2' src="./assets/sprites/thanos-gangnam-style.png">
-    <img id='elmer-fudd' src="./assets/elmer-fudd.png">
+    <img id="player" src="./assets/Big_Chungus_29.png" />
+    <img id="player-dark-mode" src="./assets/dark-chungus.png" />
+    <img id="npc1" src="./assets/sprites/npc1.png" />
+    <img id="npc2" src="./assets/sprites/npc2.png" />
+    <img id="carrot" src="./assets/sprites/carrot.png" />
+    <img id="thanos1" src="./assets/sprites/thanos1.png" />
+    <img id="thanos2" src="./assets/sprites/thanos-gangnam-style.png" />
+    <img id="elmer-fudd" src="./assets/elmer-fudd.png" />
 
     <!-- projectiles -->
-    <img id='energy-ball' src="./assets/sprites/energy-ball.png">
-    <img id="laser-red" src="./assets/sprites/laser-red.png">
-    <img id="rolling-energy-ball-left" src="./assets/sprites/rolling-energy-ball-left.png">
-    <img id="reverse" src="./assets/sprites/reverse.png">
-    <img id="bullet-cartoon" src="./assets/bullet-cartoon.png">
-    <img id="bullet-cartoon-right" src="./assets/bullet-cartoon-right.png">
-
+    <img id="energy-ball" src="./assets/sprites/energy-ball.png" />
+    <img id="laser-red" src="./assets/sprites/laser-red.png" />
+    <img
+      id="rolling-energy-ball-left"
+      src="./assets/sprites/rolling-energy-ball-left.png"
+    />
+    <img id="reverse" src="./assets/sprites/reverse.png" />
+    <img id="bullet-cartoon" src="./assets/bullet-cartoon.png" />
+    <img id="bullet-cartoon-right" src="./assets/bullet-cartoon-right.png" />
 
     <!-- UI -->
-    <img id="arrow-key-up" src="./assets/arrow-key-up.png">
-    <img id="arrow-key-right" src="./assets/arrow-key-right.png">
-    <img id="arrow-key-down" src="./assets/arrow-key-down.png">
-    <img id="arrow-key-left" src="./assets/arrow-key-left.png">
-    <img id="action1" src="./assets/energy-ball-icon.gif">
-    <img id="action2" src="./assets/explosion.png">
-    <img id="action3" src="./assets/reverse-icon.png">
-    <img id="specialAction1" src="./assets/dark-chungus.png">
+    <img id="arrow-key-up" src="./assets/arrow-key-up.png" />
+    <img id="arrow-key-right" src="./assets/arrow-key-right.png" />
+    <img id="arrow-key-down" src="./assets/arrow-key-down.png" />
+    <img id="arrow-key-left" src="./assets/arrow-key-left.png" />
+    <img id="action1" src="./assets/energy-ball-icon.gif" />
+    <img id="action2" src="./assets/explosion.png" />
+    <img id="action3" src="./assets/reverse-icon.png" />
+    <img id="specialAction1" src="./assets/dark-chungus.png" />
 
     <!-- <button id="enter-full-screen" onclick="enterFullScreen()">
         Enter full screen
     </button> -->
 
 
-
-
-    <script src="./script.js"></script>
-    
-
-    
-</body>
+    <script type="module" src="./js/constants/buttons.js"></script>
+    <script type="module" src="./js/game/game.js"></script>
+    <script type="module" src="./script.js"></script>
+  </body>
 </html>
