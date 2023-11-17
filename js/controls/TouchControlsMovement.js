@@ -29,6 +29,30 @@ export default class TouchControlsMovement {
       this.moveControlsAnchorX,
       this.moveControlsAnchorY
     );
+    this.arrowKeyUpRight = new MoveButton(
+      game,
+      buttonTypes.ARROW_UP_RIGHT,
+      this.moveControlsAnchorX,
+      this.moveControlsAnchorY
+    );
+    this.arrowKeyDownRight = new MoveButton(
+      game,
+      buttonTypes.ARROW_DOWN_RIGHT,
+      this.moveControlsAnchorX,
+      this.moveControlsAnchorY
+    );
+    this.arrowKeyDownLeft = new MoveButton(
+      game,
+      buttonTypes.ARROW_DOWN_LEFT,
+      this.moveControlsAnchorX,
+      this.moveControlsAnchorY
+    );
+    this.arrowKeyUpLeft = new MoveButton(
+      game,
+      buttonTypes.ARROW_UP_LEFT,
+      this.moveControlsAnchorX,
+      this.moveControlsAnchorY
+    );
   }
 
   update() {}
@@ -43,5 +67,9 @@ export default class TouchControlsMovement {
     this.arrowKeyRight.draw(context);
     this.arrowKeyDown.draw(context);
     this.arrowKeyLeft.draw(context);
+    this.arrowKeyUpRight.draw(context);
+    this.arrowKeyDownRight.draw(context);
+    this.arrowKeyDownLeft.draw(context);
+    this.arrowKeyUpLeft.draw(context);
   }
 }

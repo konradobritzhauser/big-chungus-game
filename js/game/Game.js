@@ -84,7 +84,7 @@ export default class Game {
 
         //CHECK IF HIT PROJECTILE
         this.player.projectiles.forEach((projectile) => {
-          if (this.checkCollision(projectile, enemy)) {
+          if (projectile.markedForDeletion==false && this.checkCollision(projectile, enemy)) {
             console.log("enemy collided with projectile");
             enemy.lives--;
             projectile.markedForDeletion = true;

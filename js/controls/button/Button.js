@@ -28,7 +28,19 @@ export default class Button {
        else if(this.type==buttonTypes.ACTION_2)window.dispatchEvent(new KeyboardEvent("keydown", { key: '2' }));
        else if(this.type==buttonTypes.ACTION_3)window.dispatchEvent(new KeyboardEvent("keydown", { key: '3' }));
        else if(this.type==buttonTypes.SPECIAL_ACTION_1)window.dispatchEvent(new KeyboardEvent("keydown", { key: 'q' }));
-      
+      else if(this.type==buttonTypes.ARROW_UP_RIGHT){
+        window.dispatchEvent(new KeyboardEvent("keydown", { key: buttonTypes.ARROW_UP }));
+        window.dispatchEvent(new KeyboardEvent("keydown", { key: buttonTypes.ARROW_RIGHT }));
+      }else if(this.type==buttonTypes.ARROW_DOWN_RIGHT){
+        window.dispatchEvent(new KeyboardEvent("keydown", { key: buttonTypes.ARROW_DOWN }));
+        window.dispatchEvent(new KeyboardEvent("keydown", { key: buttonTypes.ARROW_RIGHT }));
+      }else if(this.type==buttonTypes.ARROW_DOWN_LEFT){
+        window.dispatchEvent(new KeyboardEvent("keydown", { key: buttonTypes.ARROW_DOWN }));
+        window.dispatchEvent(new KeyboardEvent("keydown", { key: buttonTypes.ARROW_LEFT }));
+      }else if(this.type==buttonTypes.ARROW_UP_LEFT){
+        window.dispatchEvent(new KeyboardEvent("keydown", { key: buttonTypes.ARROW_UP }));
+        window.dispatchEvent(new KeyboardEvent("keydown", { key: buttonTypes.ARROW_LEFT }));
+      }
     }
     mouseup() {
       if (
@@ -38,6 +50,18 @@ export default class Button {
         this.type == buttonTypes.ARROW_LEFT
       ) {
         window.dispatchEvent(new KeyboardEvent("keyup", { key: this.type }));
+      }else if(this.type==buttonTypes.ARROW_UP_RIGHT){
+        window.dispatchEvent(new KeyboardEvent("keyup", { key: buttonTypes.ARROW_UP }));
+        window.dispatchEvent(new KeyboardEvent("keyup", { key: buttonTypes.ARROW_RIGHT }));
+      }else if(this.type==buttonTypes.ARROW_DOWN_RIGHT){
+        window.dispatchEvent(new KeyboardEvent("keyup", { key: buttonTypes.ARROW_DOWN }));
+        window.dispatchEvent(new KeyboardEvent("keyup", { key: buttonTypes.ARROW_RIGHT }));
+      }else if(this.type==buttonTypes.ARROW_DOWN_LEFT){
+        window.dispatchEvent(new KeyboardEvent("keyup", { key: buttonTypes.ARROW_DOWN }));
+        window.dispatchEvent(new KeyboardEvent("keyup", { key: buttonTypes.ARROW_LEFT }));
+      }else if(this.type==buttonTypes.ARROW_UP_LEFT){
+        window.dispatchEvent(new KeyboardEvent("keyup", { key: buttonTypes.ARROW_UP }));
+        window.dispatchEvent(new KeyboardEvent("keyup", { key: buttonTypes.ARROW_LEFT }));
       }
     }
   }
