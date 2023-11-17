@@ -43,6 +43,8 @@ export default class Game {
       this.touchControlsAbilities = new TouchControlsAbilities(this);
 
       this.lastClickBox = { width: 20, height: 20, x: 0, y: 0 };
+
+      this.reflectedProjectileSFX=document.getElementById("reflectProjectileSFX")
     }
     update(deltaTime) {
       //track game time
@@ -72,8 +74,9 @@ export default class Game {
           enemy.markedForDeletion = true;
           if (enemy.type == ENEMY_TYPE.CARROT) {
             this.ammo += 10;
-            this.player.chonkyMeter += 1;
+            this.player.chonkyMeter += 3;
             this.player.health += 1;
+            document.getElementById("carrotSFX").play()
           } else {
             this.player.health -= 1;
           }
@@ -133,6 +136,8 @@ export default class Game {
               console.log("Reverse reflected projectile");
               projectile.speed = Math.abs(projectile.speed);
               projectile.reflected = true;
+              this.reflectedProjectileSFX.currentTime=0;
+              this.reflectedProjectileSFX.play()
             }
           });
 

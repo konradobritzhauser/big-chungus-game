@@ -9,6 +9,17 @@ window.addEventListener("load", function () {
   canvas.width = 1920;
   canvas.height = 1080;
 
+  //START MUSIC
+  //play on first click to screen
+  let startMusic=function(){
+    let audioTag=this.document.getElementById("inGameMusic")
+    audioTag.play()
+    window.removeEventListener('click',startMusic)
+  }
+this.document.getElementById("inGameMusic").play()
+  this.window.addEventListener('click',startMusic)
+  this.window.addEventListener('keydown',startMusic)
+  
   
   
 

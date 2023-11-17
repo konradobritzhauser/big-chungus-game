@@ -43,6 +43,8 @@ export default class Player {
       //set eyes location
       this.eyesX = this.x + 135;
       this.eyesY = this.y + 105;
+
+      this.primaryShotSFX=document.getElementById("primaryShotSFX")
     }
 
     update(deltaTime) {
@@ -138,6 +140,9 @@ export default class Player {
         );
         console.log("this.projectiles", this.projectiles);
         this.game.ammo--;
+        
+        this.primaryShotSFX.currentTime=0
+        this.primaryShotSFX.play()
       }
       console.log("this.game.ammo", this.game.ammo);
     }
@@ -153,6 +158,8 @@ export default class Player {
           new EnergyBall(this.game, this.eyesX, this.eyesY, 5, -3.5)
         );
         this.game.ammo -= 4;
+        this.primaryShotSFX.currentTime=0
+        this.primaryShotSFX.play()
       }
     }
 
@@ -174,11 +181,14 @@ export default class Player {
       console.log("enter power up");
       this.beam = new Beam(this.game, this.x + 135, this.y + 80);
       this.darkMode = true;
+      document.getElementById('beamSFX').play()
     }
     leaveDarkMode() {
       this.darkMode = false;
       this.image = this.regularImage;
       this.beam = null;
       this.darkModeTimer = 0;
+      document.getElementById('beamSFX').pause()
+
     }
   }
