@@ -22,6 +22,7 @@ export default class MainMenu {
     this.startGameBtn.mousedown = () => {
       this.mainMenuMusic.pause();
       this.game.startGame();
+      this.startGameBtn.disable=true
     };
   }
 

@@ -117,7 +117,8 @@ export default class InGame {
         enemy.projectiles.forEach((projectile) => {
           if (projectile.reflected) {
             this.enemies.forEach((enemy) => {
-              if (this.outerGame.checkCollision(enemy, projectile)) {
+                console.log('checking if projectile hit enemy')
+              if (projectile.markedForDeletion==false && this.outerGame.checkCollision(enemy, projectile)) {
                 console.log("Reflected projectile hit enemy");
                 enemy.lives--;
                 projectile.markedForDeletion = true;

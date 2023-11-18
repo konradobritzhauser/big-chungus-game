@@ -6,6 +6,7 @@ export default class Button {
       this.game = game;
       this.type = type;
       this.game.clickableElements.push(this);
+      this.disable=false;
     }
     
     update() {
@@ -18,6 +19,7 @@ export default class Button {
     }
 
     mousedown() {
+      if(this.disable==true){return}
       if (
         this.type == buttonTypes.ARROW_UP ||
         this.type == buttonTypes.ARROW_RIGHT ||
