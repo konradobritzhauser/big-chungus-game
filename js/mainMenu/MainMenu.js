@@ -20,18 +20,13 @@ export default class MainMenu {
     );
     this.mainMenuMusic.play();
     this.startGameBtn.mousedown = () => {
-      this.mainMenuMusic.pause();
       this.game.startGame();
-      this.startGameBtn.disable=true
     };
   }
 
   update() {}
 
   draw(context) {
-
-    
-
     context.drawImage(
       this.backgroundImage,
       0,
@@ -41,12 +36,26 @@ export default class MainMenu {
     );
     this.startGameBtn.draw(context);
 
-    context.save()
+    context.save();
     context.fillStyle = "white";
     context.font = `50px Beyonders`;
     // context.textAlign = "center";
     // context.textBaseline = "middle";
-    context.fillText("Big Chungus: The Game", 140,250);
-    context.restore()
+    context.fillText("Big Chungus: The Game", 140, 250);
+    context.restore();
+  }
+
+  show() {
+    // enable all buttons
+    this.startGameBtn.disabled = false
+    this.mainMenuMusic.play();
+
+  }
+  hide() {
+    // disable all buttons
+    this.startGameBtn.disabled = true;
+    this.mainMenuMusic.pause();
+
+
   }
 }

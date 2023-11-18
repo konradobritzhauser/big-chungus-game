@@ -25,7 +25,6 @@ export default class ActionButton extends Button {
         this.y = this.anchorY 
         this.image = document.getElementById("action3");
       } else if (buttonType == buttonTypes.SPECIAL_ACTION_1) {
-        console.log("starting special action button");
         this.x = this.anchorX +this.width*2+this.margin*2
         this.y = this.anchorY -this.height-this.margin
         this.image = document.getElementById("specialAction1");

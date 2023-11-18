@@ -44,6 +44,7 @@ export default class Game {
 
   startGame() {
     this.inGame = new InGame(this,this.width, this.height);
+    this.mainMenu.hide()
   }
   pauseGame() {
     this.inGame.paused = true;

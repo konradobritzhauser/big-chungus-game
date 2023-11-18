@@ -1,6 +1,8 @@
 import { ENEMY_TYPE } from "../constants/enemyTypes.js";
 import TouchControlsAbilities from "../controls/TouchControlsAbilities.js";
 import TouchControlsMovement from "../controls/TouchControlsMovement.js";
+import Button from "../controls/button/Button.js";
+import TextButton from "../controls/button/TextButton.js";
 import Carrot from "../enemy/Carrot.js";
 import NPC1 from "../enemy/npc/NPC1.js";
 import NPC2 from "../enemy/npc/NPC2.js";
@@ -41,6 +43,7 @@ export default class InGame {
 
     this.touchControlsMovement = new TouchControlsMovement(this);
     this.touchControlsAbilities = new TouchControlsAbilities(this);
+    // this.pauseBtn=new TextButton()
 
     this.reflectedProjectileSFX = document.getElementById(
       "reflectProjectileSFX"

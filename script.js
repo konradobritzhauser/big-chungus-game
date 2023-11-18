@@ -148,7 +148,13 @@ window.addEventListener("load", function () {
       let isClicked = this.game.checkCollision(element, this.game.lastClickBox);
       if (isClicked) {
         console.log(element, "is clicked");
-        element.mousedown();
+        if(element.disabled==true){//check if button is disabled
+          console.log('clicked on button but disabled')
+            
+            return}else{
+              element.mousedown();
+
+            }
       }
     });
   });}
