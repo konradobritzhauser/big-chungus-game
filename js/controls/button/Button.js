@@ -7,6 +7,7 @@ export default class Button {
       this.type = type;
       this.game.clickableElements.push(this);
     }
+    
     update() {
       //HANDLE BEHAVIOR WHEN CLICKED
     }

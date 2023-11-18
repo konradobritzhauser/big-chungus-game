@@ -39,3 +39,8 @@ img, #player,#npc1,#npc2,#energy-ball{
 #thanos2{
     /* display: block; */
 }
+
+@font-face {
+    font-family: Beyonders;
+    src: url('./assets/fonts/beyonders/Beyonders.ttf');
+}

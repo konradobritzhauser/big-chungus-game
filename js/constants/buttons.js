@@ -17,5 +17,8 @@ export let keyStrings = {
     ACTION_1:"ACTION_1",
     ACTION_2:"ACTION_2",
     ACTION_3:"ACTION_3",
-    SPECIAL_ACTION_1:"SPECIAL_ACTION_1"
+    SPECIAL_ACTION_1:"SPECIAL_ACTION_1",
+
+    //main menu
+    START_GAME:"START_GAME"
   };

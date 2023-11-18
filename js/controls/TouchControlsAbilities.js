@@ -6,25 +6,25 @@ export default class TouchControlsAbilities{
       this.controlsAnchorX = 1400;
       this.controlsAnchorY = 850;
       this.action1 = new ActionButton(
-        game,
+        game.outerGame,
         buttonTypes.ACTION_1,
         this.controlsAnchorX,
         this.controlsAnchorY
       );
       this.action2 = new ActionButton(
-        game,
+        game.outerGame,
         buttonTypes.ACTION_2,
         this.controlsAnchorX,
         this.controlsAnchorY
       );
       this.action3 = new ActionButton(
-        game,
+        game.outerGame,
         buttonTypes.ACTION_3,
         this.controlsAnchorX,
         this.controlsAnchorY
       );
        this.specialAction1 = new ActionButton(
-        game,
+        game.outerGame,
         buttonTypes.SPECIAL_ACTION_1,
         this.controlsAnchorX,
         this.controlsAnchorY
