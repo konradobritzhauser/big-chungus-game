@@ -53,6 +53,8 @@ export default class TouchControlsMovement {
       this.moveControlsAnchorX,
       this.moveControlsAnchorY
     );
+
+    this.buttonsArr=[this.arrowKeyDown,this.arrowKeyDownLeft,this.arrowKeyDownRight,this.arrowKeyLeft,this.arrowKeyRight,this.arrowKeyUp,this.arrowKeyUpLeft,this.arrowKeyUpRight]
   }
 
   update() {}
@@ -71,5 +73,15 @@ export default class TouchControlsMovement {
     this.arrowKeyDownRight.draw(context);
     this.arrowKeyDownLeft.draw(context);
     this.arrowKeyUpLeft.draw(context);
+  }
+  disableControls(){
+    this.buttonsArr.forEach(button=>{
+      button.disabled=true
+    })
+  }
+  enableControls(){
+      this.buttonsArr.forEach(button=>{
+        button.disabled=false
+      })
   }
 }

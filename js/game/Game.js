@@ -11,7 +11,8 @@ export default class Game {
     this.inGame = null;
 
     this.mainMenu = new MainMenu(this);
-
+    this.debug=false
+    this.keys = [];
     
 
     console.log("constructed main game menu");
@@ -46,12 +47,11 @@ export default class Game {
     this.inGame = new InGame(this,this.width, this.height);
     this.mainMenu.hide()
   }
-  pauseGame() {
-    this.inGame.paused = true;
+  quitGame(){
+    this.mainMenu.show()
+    this.inGame=null
   }
-  unpauseGame() {
-    this.inGame.paused = false;
-  }
+  
   checkCollision(rect1, rect2) {
     return (
       rect1.x < rect2.x + rect2.width &&

@@ -29,7 +29,8 @@ export default class TouchControlsAbilities{
         this.controlsAnchorX,
         this.controlsAnchorY
       );
-      
+     
+      this.buttonsArr=[this.action1,this.action2,this.action3,this.specialAction1]
     }
 
     update() {}
@@ -44,5 +45,16 @@ export default class TouchControlsAbilities{
       this.action2.draw(context);
       this.action3.draw(context);
       this.specialAction1.draw(context)
+    }
+
+    disableControls(){
+      this.buttonsArr.forEach(button=>{
+        button.disabled=true
+      })
+    }
+    enableControls(){
+        this.buttonsArr.forEach(button=>{
+          button.disabled=false
+        })
     }
   }

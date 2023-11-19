@@ -1,9 +1,13 @@
+
+
 export default class UI {
     constructor(game) {
       this.game = game;
       this.fontSize = 65;
       this.fontFamily = "Helvetica";
       this.color = "white";
+
+     
     }
 
     draw(context) {

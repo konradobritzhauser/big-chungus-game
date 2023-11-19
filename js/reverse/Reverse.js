@@ -12,7 +12,7 @@ export default class Reverse {
     this.maxFrame = 67;
     this.damagePerFrame = 0.05;
 
-    this.height = this.game.player.height;
+    this.height = this.game.inGame.player.height;
     this.width = (this.height * this.imageWidth) / this.imageHeight;
     this.animationSpeed = 1;
   }

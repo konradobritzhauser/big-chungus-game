@@ -64,6 +64,14 @@ window.addEventListener("load", function () {
     clickableElements.forEach((element) => {
       let isClicked = this.game.checkCollision(element, this.game.lastClickBox);
       if (isClicked) {
+
+        if (element.disabled == true) {
+            //check if button is disabled
+            console.log("clicked on button but disabled");
+
+            return;
+          }
+
         console.log(element, "is clicked");
         element.mousedown();
         let touchIdentifier = e.changedTouches[0].identifier;
@@ -110,54 +118,60 @@ window.addEventListener("load", function () {
     })(navigator.userAgent || navigator.vendor || window.opera);
     return check;
   };
-  if(!isMobile()){this.addEventListener("click", (e) => {
-    console.log("Canvas clicked");
-    console.log("e", e);
+  if (!isMobile()) {
+    this.addEventListener("click", (e) => {
+      console.log("Canvas clicked");
+      console.log("e", e);
 
-    //get canvas current scale size
-    let canvasDOMRectList = canvas.getClientRects();
-    let canvasRealWidth = canvasDOMRectList[0].width;
-    let canvasRealHeight = canvasDOMRectList[0].height;
-    console.log("canvasRealWidth", canvasRealWidth);
-    console.log("canvasRealHeight", canvasRealHeight);
+      //get canvas current scale size
+      let canvasDOMRectList = canvas.getClientRects();
+      let canvasRealWidth = canvasDOMRectList[0].width;
+      let canvasRealHeight = canvasDOMRectList[0].height;
+      console.log("canvasRealWidth", canvasRealWidth);
+      console.log("canvasRealHeight", canvasRealHeight);
 
-    let mouseX = e.x;
-    let mouseY = e.y;
-    // let event=await e.touches[0]
-    // let mouseX = e.changedTouches[0].clientX;
-    // let mouseY = e.changedTouches[0].clientY;
+      let mouseX = e.x;
+      let mouseY = e.y;
+      // let event=await e.touches[0]
+      // let mouseX = e.changedTouches[0].clientX;
+      // let mouseY = e.changedTouches[0].clientY;
 
-    console.log("mouseX", mouseX);
-    console.log("mouseY", mouseY);
+      console.log("mouseX", mouseX);
+      console.log("mouseY", mouseY);
 
-    let scaledX = (mouseX * canvas.width) / canvasRealWidth;
-    console.log("scaledX", scaledX);
+      let scaledX = (mouseX * canvas.width) / canvasRealWidth;
+      console.log("scaledX", scaledX);
 
-    let scaledY = (mouseY * canvas.height) / canvasRealHeight;
-    console.log("scaledY", scaledY);
+      let scaledY = (mouseY * canvas.height) / canvasRealHeight;
+      console.log("scaledY", scaledY);
 
-    this.game.lastClickBox.x = scaledX;
-    this.game.lastClickBox.y = scaledY;
+      this.game.lastClickBox.x = scaledX;
+      this.game.lastClickBox.y = scaledY;
 
-    // let clickBox = this.game.clickBox;
-    // console.log("clickBox.x", clickBox.x);
-    // console.log("clickBox.y", clickBox.y);
+      // let clickBox = this.game.clickBox;
+      // console.log("clickBox.x", clickBox.x);
+      // console.log("clickBox.y", clickBox.y);
 
-    let clickableElements = this.game.clickableElements;
-    clickableElements.forEach((element) => {
-      let isClicked = this.game.checkCollision(element, this.game.lastClickBox);
-      if (isClicked) {
-        console.log(element, "is clicked");
-        if(element.disabled==true){//check if button is disabled
-          console.log('clicked on button but disabled')
-            
-            return}else{
-              element.mousedown();
+      let clickableElements = this.game.clickableElements;
+      clickableElements.forEach((element) => {
+        let isClicked = this.game.checkCollision(
+          element,
+          this.game.lastClickBox
+        );
+        if (isClicked) {
+          console.log(element, "is clicked");
+          if (element.disabled == true) {
+            //check if button is disabled
+            console.log("clicked on button but disabled");
 
-            }
-      }
+            return;
+          } else {
+            element.mousedown();
+          }
+        }
+      });
     });
-  });}
+  }
 
   //KEEP TO MAKE IT GLOBAL. HAS ISSUE WHEN THERE ARE MULTIPLE TOUCHES AT THE SAME TIME
   // canvas.addEventListener("touchend", (e) => {

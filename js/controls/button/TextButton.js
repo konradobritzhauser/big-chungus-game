@@ -8,13 +8,14 @@ export default class TextButton extends Button {
     this.width = width;
     this.height = height;
     this.text = text;
-    this.backgroundColor = "rgba(0,0,0,0)";
+    this.backgroundColor = "rgba(0,0,0)";
     this.textColor = "white";
   }
 
   draw(context) {
+    
     context.fillStyle = this.backgroundColor;
-    context.fillRect(this.x, this.y, this.width, this.height);
+    
     context.save()
     context.fillStyle = this.textColor;
     context.font = `20px Beyonders`;
@@ -23,5 +24,9 @@ export default class TextButton extends Button {
     context.fillText(this.text, this.x+this.width/2, this.y + this.height/2);
 
     context.restore()
+
+    if(this.game.debug)context.strokeRect(this.x, this.y, this.width, this.height);
+
+
   }
 }

@@ -134,21 +134,22 @@ export default class Player {
     }
 
     shootTop() {
-      if (this.game.ammo > 0) {
+      if (this.game.inGame.ammo > 0) {
         this.projectiles.push(
           new EnergyBall(this.game, this.eyesX, this.eyesY, 5, 0)
         );
         console.log("this.projectiles", this.projectiles);
-        this.game.ammo--;
+        this.game.inGame.ammo--;
         
         this.primaryShotSFX.currentTime=0
         this.primaryShotSFX.play()
       }
-      console.log("this.game.ammo", this.game.ammo);
+      console.log("this.game.ammo", this.game.inGame.ammo);
     }
 
     shootSpread() {
-      if (this.game.ammo > 4) {
+      console.log('Selected to shoot spread')
+      if (this.game.inGame.ammo > 4) {
         this.projectiles.push(
           new EnergyBall(this.game, this.eyesX, this.eyesY, 5, 3.5),
           new EnergyBall(this.game, this.eyesX, this.eyesY, 5, 2.5),
@@ -157,7 +158,7 @@ export default class Player {
           new EnergyBall(this.game, this.eyesX, this.eyesY, 5, -2.5),
           new EnergyBall(this.game, this.eyesX, this.eyesY, 5, -3.5)
         );
-        this.game.ammo -= 4;
+        this.game.inGame.ammo -= 4;
         this.primaryShotSFX.currentTime=0
         this.primaryShotSFX.play()
       }
@@ -165,10 +166,10 @@ export default class Player {
 
     enableReverse() {
       console.log("activating reverse");
-      if (this.game.ammo > 5) {
+      if (this.game.inGame.ammo > 5) {
         this.reverseElem = new Reverse(this.game, this.x, this.y);
         this.reverse = true;
-        this.game.ammo -= 10;
+        this.game.inGame.ammo -= 10;
       }
     }
     disableReverse() {
