@@ -256,10 +256,12 @@ export default class InGame {
     this.paused = true;
     this.touchControlsAbilities.disableControls()
     this.touchControlsMovement.disableControls()
+    this.inGameMusic.pause()
   }
   unpauseGame() {
     this.paused = false;
     this.touchControlsAbilities.enableControls()
     this.touchControlsMovement.enableControls()
+    this.inGameMusic.play();
   }
 }

@@ -10,14 +10,13 @@ window.addEventListener("load", function () {
 
   //START MUSIC
   //play on first click to screen
-  let startMusic = function () {
-    let audioTag = this.document.getElementById("main-menu-music");
-    audioTag.play();
-    window.removeEventListener("click", startMusic);
-  };
-  this.document.getElementById("main-menu-music").play();
-  this.window.addEventListener("click", startMusic);
-  // this.window.addEventListener("keydown", startMusic);
+  // let startMusic = function () {
+  //   let audioTag = this.document.getElementById("main-menu-music");
+  //   audioTag.play();
+  //   window.removeEventListener("click", startMusic);
+  // };
+  // this.document.getElementById("main-menu-music").play();
+  // this.window.addEventListener("click", startMusic);
 
   class Particle {}
 
@@ -221,11 +220,13 @@ window.addEventListener("load", function () {
   const game = new Game(canvas.width, canvas.height);
   window.game = game;
   let lastTime = 0;
+  
 
   //animate loop
   function animate(timeStamp) {
     const deltaTime = timeStamp - lastTime;
     lastTime = timeStamp;
+    
     // console.log('deltaTime', deltaTime)
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);

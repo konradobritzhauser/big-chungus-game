@@ -18,7 +18,6 @@ export default class MainMenu {
       200,
       "Start Game"
     );
-    this.mainMenuMusic.play();
     this.startGameBtn.mousedown = () => {
       this.game.startGame();
     };
