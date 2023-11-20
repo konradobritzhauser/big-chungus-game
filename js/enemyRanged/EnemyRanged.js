@@ -79,20 +79,6 @@ export default class EnemyRanged {
     }
 
     shoot() {
-      this.projectiles.push(
-        new EnemyProjectile(
-          this.game,
-          this.x,
-          this.y,
-          this.projectileImage,
-          this.projectileImageWidth,
-          this.projectileImageHeight,
-          this.projectileSpriteWidth,
-          this.projectileSpriteHeight,
-          this.projectileMaxFrame,
-          this.projectileAnimationSpeed,
-          this.projectileImageReflected
-        )
-      );
+      this.projectiles.push(this.instantiateNewProjectile())
     }
   }

@@ -10,7 +10,8 @@ export default class EnemyProjectile {
       spriteHeight,
       maxFrame,
       animationSpeed,
-      imageReflected
+      imageReflected,
+      projectileDamage
     ) {
       this.game = game;
       this.x = x;
@@ -27,17 +28,18 @@ export default class EnemyProjectile {
       this.animationSpeed = animationSpeed;
       this.width = width;
       this.height = height;
-      this.imageWidth = spriteWidth;
-      this.imageHeight = spriteHeight;
+      this.spriteWidth = spriteWidth;
+      this.spriteHeight = spriteHeight;
       this.maxFrame = maxFrame;
-      this.speed = -2;
+      this.speedX = 0;//should be determined by subclass
 
       //reflected properties
       this.reflected = false;
       this.imageReflected = imageReflected;
+      this.damage=0//should be determined by subclass
     }
     update() {
-      this.x += this.speed;
+      this.x += this.speedX;
 
       if (this.x < 0) this.markedForDeletion = true;
       if (this.reflected) this.image = this.imageReflected;
@@ -50,10 +52,10 @@ export default class EnemyProjectile {
         context.strokeRect(this.x, this.y, this.width, this.height);
       context.drawImage(
         this.image,
-        Math.floor(this.frameX) * this.imageWidth,
-        Math.floor(this.frameY) * this.imageHeight,
-        this.imageWidth,
-        this.imageHeight,
+        Math.floor(this.frameX) * this.spriteWidth,
+        Math.floor(this.frameY) * this.spriteHeight,
+        this.spriteWidth,
+        this.spriteHeight,
         this.x,
         this.y,
         this.width,

@@ -1,6 +1,6 @@
 import InGame from "../InGame/InGame.js";
+import Level1 from "../InGame/Level1.js";
 import MainMenu from "../mainMenu/MainMenu.js";
-
 const ROUTES = {
   MAIN_MENU: "MAIN_MENU",
   IN_GAME: "IN_GAME",
@@ -103,9 +103,8 @@ export default class Game {
     this.mainMenu.mainMenuMusic.play();
     this.currentRoute = ROUTES.MAIN_MENU;
   }
-
   startGame() {
-    this.inGame = new InGame(this, this.width, this.height);
+    this.inGame = new Level1(this, this.width, this.height);
     this.inGame.inGameMusic.currentTime = 0;
     this.inGame.inGameMusic.play();
     this.mainMenu.hide();

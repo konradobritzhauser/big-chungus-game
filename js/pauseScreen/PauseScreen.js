@@ -17,6 +17,7 @@ export default class PauseScreen{
         this.quitGameBtn= new TextButton(this.game,this.width/2-100,this.height/2,200,90,"Quit Game")
         this.quitGameBtn.mousedown=()=>{
             this.game.quitGame()
+            this.hide()
         }
 
 
@@ -42,11 +43,13 @@ export default class PauseScreen{
     show(){
         this.isShown=true
         this.resumeBtn.disabled=false
+        this.quitGameBtn.disabled=false
     }
 
     hide(){
         this.isShown=false
         this.resumeBtn.disabled=true
+        this.quitGameBtn.disabled=true
 
     }
 }

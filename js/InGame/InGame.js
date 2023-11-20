@@ -8,6 +8,7 @@ import Carrot from "../enemy/Carrot.js";
 import NPC1 from "../enemy/npc/NPC1.js";
 import NPC2 from "../enemy/npc/NPC2.js";
 import ElmerFudd from "../enemyRanged/ElmerFudd.js";
+import ThanosBoss from "../enemyRanged/ThanosBoss.js";
 import InputHandler from "../inputHandler/InputHandler.js";
 import PauseScreen from "../pauseScreen/PauseScreen.js";
 import Player from "../player/Player.js";
@@ -36,7 +37,7 @@ export default class InGame {
     this.score = 0;
     this.winningScore = 10000000000;
 
-    this.gameTime = 0;
+    this.gameTime = 240*1000;
     this.timeLimit = 5000 * 500000000;
 
     this.debug = false;
@@ -69,6 +70,9 @@ export default class InGame {
     this.inGameMusic.play();
 
     this.pauseScreen = new PauseScreen(this.outerGame);
+
+    this.bossPhase=false;
+    this.bossTime=360*1000
   }
   update(deltaTime) {
     if (this.paused == true) {
@@ -78,7 +82,7 @@ export default class InGame {
     }
 
     //track game time
-    if (!this.gameOver) this.gameTime += deltaTime;
+    if (!this.gameOver) this.gameTime += deltaTime
 
     if (this.gameTime > this.timeLimit) this.gameOver = true;
 
@@ -107,7 +111,11 @@ export default class InGame {
           this.player.chonkyMeter += 3;
           this.player.health += 1;
           document.getElementById("carrotSFX").play();
-        } else {
+        } else if(enemy.type==ENEMY_TYPE.BOSS){
+            this.player.health-=.05
+        enemy.markedForDeletion = false;
+
+        }else {
           this.player.health -= 1;
         }
       }
@@ -145,13 +153,13 @@ export default class InGame {
         enemy.projectiles.forEach((projectile) => {
           if (projectile.reflected) {
             this.enemies.forEach((enemy) => {
-              console.log("checking if projectile hit enemy");
+            //   console.log("checking if projectile hit enemy");
               if (
                 projectile.markedForDeletion == false &&
                 this.outerGame.checkCollision(enemy, projectile)
               ) {
                 console.log("Reflected projectile hit enemy");
-                enemy.lives--;
+                enemy.lives-=projectile.damage;
                 projectile.markedForDeletion = true;
               }
             });
@@ -165,7 +173,7 @@ export default class InGame {
           if (this.outerGame.checkCollision(this.player, projectile)) {
             console.log("player hit");
             projectile.markedForDeletion = true; //chungus hit
-            this.player.health--;
+            this.player.health-=projectile.damage;
           }
 
           //check if enemy projectile hits reverse
@@ -174,7 +182,7 @@ export default class InGame {
             this.outerGame.checkCollision(this.player.reverseElem, projectile)
           ) {
             console.log("Reverse reflected projectile");
-            projectile.speed = Math.abs(projectile.speed);
+            projectile.speedX = Math.abs(projectile.speedX);
             projectile.reflected = true;
             this.reflectedProjectileSFX.currentTime = 0.1;
             this.reflectedProjectileSFX.play();
@@ -199,6 +207,14 @@ export default class InGame {
       this.enemyTimer = 0;
     } else {
       this.enemyTimer += deltaTime;
+    }
+
+
+    //check if boss should spawn
+    if(this.gameTime>this.bossTime && this.bossPhase==false){
+        this.spawnBoss();
+        this.bossPhase=true
+
     }
   }
   draw(context) {
@@ -243,10 +259,10 @@ export default class InGame {
   }
 
   addEnemy() {
+
     let randomize = Math.random();
     if (randomize < 0.15) this.enemies.push(new Carrot(this));
     if (randomize < 0.2) this.enemies.push(new ElmerFudd(this));
-    // if (randomize < 0.35) this.enemies.push(new Thanos2(this));
     else if (randomize < 0.7) this.enemies.push(new NPC2(this));
     else this.enemies.push(new NPC1(this));
     // console.log('this.enemies', this.enemies)

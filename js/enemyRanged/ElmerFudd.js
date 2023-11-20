@@ -1,3 +1,4 @@
+import ElmerFuddProjectile from "../EnemyProjectile/ElmerFuddProjectile.js";
 import EnemyRanged from "./EnemyRanged.js";
 
 
@@ -12,17 +13,6 @@ export default class ElmerFudd extends EnemyRanged {
       this.lives = 5;
       this.score = this.lives;
 
-      this.projectileImage = document.getElementById("bullet-cartoon");
-      this.projectileImageReflected = document.getElementById(
-        "bullet-cartoon-right"
-      );
-      this.projectileImageWidth = 960 * 0.2;
-      this.projectileImageHeight = 300 * 0.2;
-      this.projectileSpriteWidth = 960;
-      this.projectileSpriteHeight = 300;
-      this.projectileMaxFrame = 120;
-      this.projectileAnimationSpeed = 1;
-
       this.width = 233 * 0.8;
       this.height = 314 * 0.8;
       this.y = Math.random() * (this.game.height * 0.95 - this.height);
@@ -33,5 +23,11 @@ export default class ElmerFudd extends EnemyRanged {
       this.maxFrame = 20;
       this.animationSpeed = 0.1;
       this.isAnimated = false;
+
+      
+    }
+
+    instantiateNewProjectile(){
+      return new ElmerFuddProjectile(game,this.x,this.y)
     }
   }
