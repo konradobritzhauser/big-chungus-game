@@ -37,7 +37,7 @@ export default class InGame {
     this.score = 0;
     this.winningScore = 10000000000;
 
-    this.gameTime = 240*1000;
+    this.gameTime = 240*1000*0;
     this.timeLimit = 5000 * 500000000;
 
     this.debug = false;
