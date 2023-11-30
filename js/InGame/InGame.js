@@ -62,6 +62,8 @@ export default class InGame {
       this.pauseGame();
     };
 
+    this.buttonsArr=[this.pauseBtn]
+
     this.reflectedProjectileSFX = document.getElementById(
       "reflectProjectileSFX"
     );

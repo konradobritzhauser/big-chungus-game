@@ -113,7 +113,21 @@ export default class Game {
   quitGame() {
     this.inGame.inGameMusic.pause();
     this.mainMenu.show();
+    //remove all keyboard event listeners in game
+    
+
+    //remove all clickable elements
+    this.clickableElements=this.clickableElements.filter(elem1=>{
+      let elementsToRemove=this.inGame.touchControlsAbilities.buttonsArr.concat(this.inGame.touchControlsMovement.buttonsArr,this.inGame.pauseScreen.buttonsArr,this.inGame.buttonsArr)
+
+      return !elementsToRemove.some(elem2=>{
+        return elem1==elem2
+      }
+        )
+    })
+//unassign in game object
     this.inGame = null;
+
   }
 
   checkCollision(rect1, rect2) {

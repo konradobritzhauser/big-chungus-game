@@ -13,12 +13,17 @@ export default class PauseScreen{
             this.game.inGame.unpauseGame()
             this.hide()
         }
+        this.resumeBtn.disabled=true
 
         this.quitGameBtn= new TextButton(this.game,this.width/2-100,this.height/2,200,90,"Quit Game")
         this.quitGameBtn.mousedown=()=>{
             this.game.quitGame()
             this.hide()
         }
+        this.quitGameBtn.disabled=true
+
+
+        this.buttonsArr=[this.quitGameBtn,this.resumeBtn]
 
 
         
